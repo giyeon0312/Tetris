@@ -1,5 +1,6 @@
 #include "Engine.h"
 
+CEngine* CEngine::_instance = nullptr;
 
 bool CEngine::Init()
 {

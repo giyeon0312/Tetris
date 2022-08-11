@@ -1,4 +1,4 @@
-#pragma once
+
 #include <mutex>
 #include <thread>
 
@@ -9,7 +9,7 @@ static mutex _mutex;
 template<typename T>
 class Singleton
 {
-private:
+protected:
 	static T* _instance;
 
 public:

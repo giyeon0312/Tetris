@@ -11,7 +11,7 @@ int main()
 		return 0;
 	}
 
-	CEngine::GetInstance()->Run();
+	//CEngine::GetInstance()->Run();
 
 	CEngine::DestoryInstance();
 
