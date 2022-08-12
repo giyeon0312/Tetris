@@ -6,6 +6,10 @@ class CEngine
 	: public Singleton<CEngine>
 {
 public:
+	CEngine();
+	~CEngine();
+
+public:
 	bool Init();
 	void Run();
 

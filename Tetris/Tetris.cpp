@@ -5,15 +5,15 @@ using namespace std;
 
 int main()
 {
-	if (CEngine::GetInstance()->Init())
+	if (!CEngine::GetInstance()->Init())
 	{
-		CEngine::DestoryInstance();
+		CEngine::GetInstance()->DestoryInstance();
 		return 0;
 	}
 
-	//CEngine::GetInstance()->Run();
+	CEngine::GetInstance()->Run();
 
-	CEngine::DestoryInstance();
+	CEngine::GetInstance()->DestoryInstance();
 
 	return true;
 }

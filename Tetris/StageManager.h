@@ -5,12 +5,16 @@
 class CStageManager
 	: public Singleton<CStageManager>
 {
-private:
+public:
 	CStageManager();
 	~CStageManager();
 
 public:
 	bool Init();
 	void Run();
+
+private:
+	class CStage* m_pCurStage;
+
 };
 
