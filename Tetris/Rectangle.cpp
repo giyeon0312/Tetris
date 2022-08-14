@@ -2,18 +2,19 @@
 
 bool CRectangle::Init()
 {
-    //ㅁ모양
-    m_cShape[2][0] = 0;
-    m_cShape[2][1] = 0;
-    m_cShape[3][0] = 0;
-    m_cShape[3][1] = 0;
+    if (!CShape::Init())
+        return false;
 
-    m_tPivot.x = 1;
+    //ㅁ모양
+    m_cShape[2][0] = '0';
+    m_cShape[2][1] = '0';
+    m_cShape[3][0] = '0';
+    m_cShape[3][1] = '0';
+
+    m_tPivot.x =  0;
     m_tPivot.y = 3;
 
-    return false;
-}
+    m_nWidth = 2;
 
-void CRectangle::Render()
-{
+    return false;
 }

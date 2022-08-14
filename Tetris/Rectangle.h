@@ -6,6 +6,5 @@ class CRectangle :
 {
 public:
     bool Init();
-    void Render();
 };
 
