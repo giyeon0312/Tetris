@@ -76,3 +76,9 @@ typedef struct tagPosition
     }
 
 }POSITION, * PPOSITIOPN;
+
+enum SHAPE_TYPE
+{
+    ST_RECT, 
+    ST_END,
+};

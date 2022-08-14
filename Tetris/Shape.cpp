@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Engine.h"
 
 CShape::CShape()
 {
@@ -31,6 +32,10 @@ void CShape::Render()
 {
 	for (int i = 0; i < MAX_SHAPE_SIZE; ++i)
 	{
+		// 콘솔 창에 출력할 좌표를 설정한 후에 출력한다.
+		// 4*4의 피봇이 맨 왼쪽 아래이므로 -3,-2,-1,-0만큼 갔다가 그리는 순서이다.
+		CEngine::GetInstance()->SetConsolePos(m_tPos.x, m_tPos.y - (3 - i));
+
 		for (int j = 0; j < MAX_SHAPE_SIZE; ++j)
 		{
 			if (m_cShape[i][j] == '0')

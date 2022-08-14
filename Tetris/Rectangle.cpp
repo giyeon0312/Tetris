@@ -16,5 +16,8 @@ bool CRectangle::Init()
 
     m_nWidth = 2;
 
-    return false;
+    m_tPos.x = 4;
+    m_tPos.y = 0;
+
+    return true;
 }
