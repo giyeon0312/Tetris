@@ -7,13 +7,13 @@ int main()
 {
 	if (!CEngine::GetInstance()->Init())
 	{
-		CEngine::GetInstance()->DestoryInstance();
+		CEngine::GetInstance()->DestroyInstance();
 		return 0;
 	}
 
 	CEngine::GetInstance()->Run();
 
-	CEngine::GetInstance()->DestoryInstance();
+	CEngine::GetInstance()->DestroyInstance();
 
 	return true;
 }

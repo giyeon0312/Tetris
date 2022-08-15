@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "StageManager.h"
+#include "ShapeManager.h"
 
 CEngine* CEngine::_instance = nullptr;
 
@@ -10,7 +11,8 @@ CEngine::CEngine()
 
 CEngine::~CEngine()
 {
-	CStageManager::GetInstance()->DestoryInstance();
+	CStageManager::GetInstance()->DestroyInstance();
+	CShapeManager::GetInstance()->DestroyInstance();
 }
 
 bool CEngine::Init()
@@ -31,7 +33,17 @@ bool CEngine::Init()
 
 void CEngine::Run()
 {
-	CStageManager::GetInstance()->Run();
+	while (true)
+	{
+		system("cls");
+		CShapeManager::GetInstance()->Update();
+
+		CStageManager::GetInstance()->Run();
+		CShapeManager::GetInstance()->Render();
+
+		Sleep(1000);		// 초당 한번만 돌아가도록 제어한다.
+	}
+	
 }
 
 void CEngine::SetConsolePos(int x, int y)

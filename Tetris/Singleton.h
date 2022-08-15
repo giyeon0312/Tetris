@@ -27,7 +27,7 @@ public:
 		return _instance;
 	}
 
-	static void DestoryInstance()
+	static void DestroyInstance()
 	{
 		SAFE_DELETE(_instance);
 	}
