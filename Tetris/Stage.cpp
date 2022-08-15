@@ -2,6 +2,7 @@
 
 CStage::CStage()
 {
+	m_nSpeed = 10;
 }
 
 CStage::~CStage()
