@@ -1,5 +1,7 @@
 #include "ShapeManager.h"
 #include "Rectangle.h"
+#include "StageManager.h"
+#include "Stage.h"
 
 CShapeManager* CShapeManager::_instance = nullptr;
 
@@ -7,6 +9,7 @@ CShapeManager::CShapeManager():
 	m_pCurShape(NULL), m_pNextShape(NULL)
 {
 	m_pCurShape = CreateRandomShape();
+	m_nSpeed = 0;
 }
 
 CShapeManager::~CShapeManager()
@@ -17,7 +20,16 @@ CShapeManager::~CShapeManager()
 
 void CShapeManager::Update()
 {
-	m_pCurShape->MoveDown();
+
+	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
+	++m_nSpeed;
+
+	// 틱이 다 돌았을 경우
+	if (pCurStage->GetSpeed() == m_nSpeed)
+	{
+		m_pCurShape->MoveDown();
+		m_nSpeed = 0;
+	}
 }
 
 void CShapeManager::Render()
