@@ -2,6 +2,7 @@
 #include "Rectangle.h"
 #include "StageManager.h"
 #include "Stage.h"
+#include <Windows.h>
 
 CShapeManager* CShapeManager::_instance = nullptr;
 
@@ -29,6 +30,16 @@ void CShapeManager::Update()
 	{
 		m_pCurShape->MoveDown();
 		m_nSpeed = 0;
+	}
+
+	if (GetAsyncKeyState('A') & 0x8000) // 0x8000은 이전에 누른 적이 없고 호출 시점에서 눌린 상태
+	{
+		m_pCurShape->MoveLeft();
+	}
+
+	if (GetAsyncKeyState('D') & 0x8000) 
+	{
+		m_pCurShape->MoveRight();
 	}
 }
 

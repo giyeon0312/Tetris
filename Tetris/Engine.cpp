@@ -41,7 +41,7 @@ void CEngine::Run()
 		CStageManager::GetInstance()->Run();
 		CShapeManager::GetInstance()->Render();
 
-		Sleep(1000);		// 초당 한번만 돌아가도록 제어한다.
+		Sleep(100);		// 초당 한번만 돌아가도록 제어한다.
 	}
 	
 }
@@ -49,6 +49,6 @@ void CEngine::Run()
 void CEngine::SetConsolePos(int x, int y)
 {
 	// 한 칸에 2byte를 사용하므로
-	COORD	pos = { x * 2,y };
+	COORD	pos = { (x + 1) * 2,y };
 	SetConsoleCursorPosition(m_hConsole, pos);
 }
