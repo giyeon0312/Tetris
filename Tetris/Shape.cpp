@@ -41,6 +41,9 @@ void CShape::Render()
 
 		for (int j = 0; j < MAX_SHAPE_SIZE; ++j)
 		{
+			if (m_tPos.x + j >= STAGE_WIDTH)
+				continue;
+
 			if (m_cShape[i][j] == '0')
 				cout << "бр";
 			else
