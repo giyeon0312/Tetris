@@ -53,12 +53,40 @@ void CShape::Render()
 	}
 }
 
-void CShape::MoveDown()
+void CShape::RenderNext()
+{
+	for (int i = 0; i < MAX_SHAPE_SIZE; ++i)
+	{
+		// 콘솔 창에 출력할 좌표를 설정한 후에 출력한다.
+		// 4*4의 피봇이 맨 왼쪽 아래이므로 -3,-2,-1,-0만큼 갔다가 그리는 순서이다.
+		int iYindex = m_tPos.y - (3 - i);
+		if (iYindex < 0) continue;
+
+		CEngine::GetInstance()->SetConsolePos(m_tPos.x, iYindex);
+
+		for (int j = 0; j < MAX_SHAPE_SIZE; ++j)
+		{
+			if (m_cShape[i][j] == '0')
+				cout << "□";
+			else
+				cout << "  ";
+		}
+		cout << '\n';
+	}
+}
+
+/// <summary>
+/// 한 칸씩 현재 도형의 위치를 내린다.
+/// </summary>
+/// <returns>바닥이나 다른 도형에 닿으면 true, 아직 안 닿았으면 false</returns>
+bool CShape::MoveDown()
 {
 	if (m_tPos.y == STAGE_HEIGHT - 1)
-		return;
+		return true;
 
 	m_tPos.y++;
+
+	return false;
 }
 
 void CShape::MoveRight()

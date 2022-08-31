@@ -36,10 +36,16 @@ public:
 		return m_tPivot;
 	}
 
+	const char GetBlock(int x,int y) const
+	{
+		return m_cShape[y][x];
+	}
+
 public:
 	virtual bool Init();
 	void Render();
-	void MoveDown();
+	void RenderNext();
+	bool MoveDown();
 	void MoveRight();
 	void MoveLeft();
 };

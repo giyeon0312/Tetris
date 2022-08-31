@@ -10,6 +10,7 @@ CShapeManager::CShapeManager():
 	m_pCurShape(NULL), m_pNextShape(NULL)
 {
 	m_pCurShape = CreateRandomShape();
+	m_pNextShape = CreateRandomShape();
 	m_nSpeed = 0;
 }
 
@@ -28,7 +29,19 @@ void CShapeManager::Update()
 	// 틱이 다 돌았을 경우
 	if (pCurStage->GetSpeed() == m_nSpeed)
 	{
-		m_pCurShape->MoveDown();
+		// 현재 도형이 바닥에 닿았을 경우
+		if (m_pCurShape->MoveDown())
+		{
+			pCurStage->AddBlock(m_pCurShape,m_pCurShape->GetPosition());
+
+			SAFE_DELETE(m_pCurShape);
+
+			m_pCurShape = m_pNextShape;
+			m_pCurShape->SetPosition(4, 0);
+
+			m_pNextShape = CreateRandomShape();
+		}
+
 		m_nSpeed = 0;
 	}
 
@@ -46,6 +59,9 @@ void CShapeManager::Update()
 void CShapeManager::Render()
 {
 	m_pCurShape->Render();
+
+	m_pNextShape->SetPosition(12, 3);
+	m_pNextShape->RenderNext();
 }
 
 CShape* CShapeManager::CreateShape(SHAPE_TYPE eType)

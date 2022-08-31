@@ -25,8 +25,13 @@ public:
 	{
 		m_nSpeed = nSpeed;
 	}
+
+public:
+	void AddBlock(class CShape* CBlock, const POSITION& tPos );
+
 public:
 	bool Init();
 	void Render();
+
 };
 
