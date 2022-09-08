@@ -26,8 +26,14 @@ void CStage::AddBlock(CShape* pCurShape, const POSITION& tPos)
 
 bool CStage::Init()
 {
-	memset(m_Stage, 0, STAGE_WIDTH * STAGE_HEIGHT);
-
+	//memset(m_Stage, 0, STAGE_WIDTH * STAGE_HEIGHT);
+	for (int i = 0; i < STAGE_HEIGHT; ++i)
+	{
+		for (int j = 0; j < STAGE_WIDTH; ++j)
+		{
+			m_Stage[i][j] = '1';
+		}
+	}
 	return true;
 }
 
@@ -42,10 +48,13 @@ void CStage::Render()
 				cout << "бс";
 			else if (i == STAGE_HEIGHT)
 				cout << "бс";
-			else if (m_Stage[i][j] == '0')
-				cout << "бр";
 			else
-				cout << "  ";
+			{
+				if (m_Stage[i][j-1] == '1')
+					cout << "  ";
+				else
+					cout << "бр";
+			}
 		}
 		cout << '\n';
 	}
