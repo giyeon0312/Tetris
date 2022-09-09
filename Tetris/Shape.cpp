@@ -1,5 +1,7 @@
 #include "Shape.h"
 #include "Engine.h"
+#include "Stage.h"
+#include "StageManager.h"
 
 CShape::CShape()
 {
@@ -34,7 +36,7 @@ void CShape::Render()
 	{
 		// 콘솔 창에 출력할 좌표를 설정한 후에 출력한다.
 		// 4*4의 피봇이 맨 왼쪽 아래이므로 -3,-2,-1,-0만큼 갔다가 그리는 순서이다.
-		int iYindex = m_tPos.y - (3 - i); 
+		int iYindex = m_tPos.y - (3 - i);
 		if (iYindex < 0) continue;
 
 		CEngine::GetInstance()->SetConsolePos(m_tPos.x, iYindex);
@@ -76,13 +78,27 @@ void CShape::RenderNext()
 }
 
 /// <summary>
-/// 한 칸씩 현재 도형의 위치를 내린다.
+/// 한 칸씩 현재 도형의 위치를 내리며 닿았는지 체크한다.
 /// </summary>
 /// <returns>바닥이나 다른 도형에 닿으면 true, 아직 안 닿았으면 false</returns>
 bool CShape::MoveDown()
 {
-	if (m_tPos.y == STAGE_HEIGHT - 1)
-		return true;
+	// 도형을 순회하며 바닥이나 다른 도형에 닿았는지 체크
+	CStage* pStage = CStageManager::GetInstance()->GetCurrentStage();
+
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			// 4*4 모양의 i,j칸에 도형이 있으며 아래에 다른 도형이 있으며 닿은 것이다.
+			// y에서 3-i 칸을 빼줬었는데 바로 그 아래칸을 체크해야하므로 2-i칸을 탐색한다.
+			if ((m_cShape[i][j] == '0')
+				&& pStage->CheckBlock(m_tPos.x + j, m_tPos.y - (3 - i) + 1))
+			{
+				return true;
+			}
+		}
+	}
 
 	m_tPos.y++;
 
@@ -94,6 +110,17 @@ void CShape::MoveRight()
 	if ((m_tPos.x + m_nWidth) >= STAGE_WIDTH)
 		return;
 
+	CStage* pStage = CStageManager::GetInstance()->GetCurrentStage();
+
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j - 1, m_tPos.y - (3 - i)))
+				return;
+		}
+	}
+
 	m_tPos.x++;
 }
 
@@ -101,6 +128,17 @@ void CShape::MoveLeft()
 {
 	if (m_tPos.x == 0)
 		return;
+
+	CStage* pStage = CStageManager::GetInstance()->GetCurrentStage();
+
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j - 1, m_tPos.y - (3 - i)))
+				return;
+		}
+	}
 
 	m_tPos.x--;
 }

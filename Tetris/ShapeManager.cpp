@@ -29,7 +29,7 @@ void CShapeManager::Update()
 	// 틱이 다 돌았을 경우
 	if (pCurStage->GetSpeed() == m_nSpeed)
 	{
-		// 현재 도형이 바닥에 닿았을 경우
+		// 현재 도형이 바닥이나 다른 도형 위에 닿았을 경우
 		if (m_pCurShape->MoveDown())
 		{
 			pCurStage->AddBlock(m_pCurShape,m_pCurShape->GetPosition());

@@ -41,7 +41,7 @@ void CEngine::Run()
 		CStageManager::GetInstance()->Run();
 		CShapeManager::GetInstance()->Render();
 
-		Sleep(100);		// 초당 한번만 돌아가도록 제어한다.
+		Sleep(5);		// 초당 한번만 돌아가도록 제어한다.
 	}
 	
 }
