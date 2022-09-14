@@ -79,6 +79,12 @@ typedef struct tagPosition
 
 enum SHAPE_TYPE
 {
-    ST_RECT, 
+    ST_RECT,
+    ST_GUN,
+    ST_RGUN,
+    ST_LINE,
+    ST_S,
+    ST_T,
+    ST_Z,
     ST_END,
 };

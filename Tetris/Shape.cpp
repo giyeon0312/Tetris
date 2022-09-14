@@ -116,7 +116,8 @@ void CShape::MoveRight()
 	{
 		for (int j = 0; j < 4; ++j)
 		{
-			if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j - 1, m_tPos.y - (3 - i)))
+			//if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j - 1, m_tPos.y - (3 - i)))
+			if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j, m_tPos.y - (3 - i)))
 				return;
 		}
 	}

@@ -1,7 +1,15 @@
-#include "ShapeManager.h"
-#include "Rectangle.h"
 #include "StageManager.h"
 #include "Stage.h"
+
+#include "ShapeManager.h"
+#include "Rectangle.h"
+#include "ShapeGun.h"
+#include "ShapeRGun.h"
+#include "ShapeLine.h"
+#include "ShapeS.h"
+#include "ShapeT.h"
+#include "ShapeZ.h"
+
 #include <Windows.h>
 
 CShapeManager* CShapeManager::_instance = nullptr;
@@ -73,6 +81,24 @@ CShape* CShapeManager::CreateShape(SHAPE_TYPE eType)
 	case SHAPE_TYPE::ST_RECT:
 		pShape = new CRectangle();
 		break;
+	case SHAPE_TYPE::ST_GUN:
+		pShape = new CShapeGun();
+		break;
+	case SHAPE_TYPE::ST_RGUN:
+		pShape = new CShapeRGun();
+		break;
+	case SHAPE_TYPE::ST_LINE:
+		pShape = new CShapeLine();
+		break;
+	case SHAPE_TYPE::ST_S:
+		pShape = new CShapeS();
+		break;
+	case SHAPE_TYPE::ST_T:
+		pShape = new CShapeT();
+		break;
+	case SHAPE_TYPE::ST_Z:
+		pShape = new CShapeZ();
+		break;
 	}
 
 	if (!pShape->Init())
@@ -91,10 +117,28 @@ CShape* CShapeManager::CreateRandomShape()
 
 	switch ((SHAPE_TYPE)randomShape)
 	{
-	case ST_RECT:
-		pShape = new CRectangle();
-		break;
-	}
+		case SHAPE_TYPE::ST_RECT:
+			pShape = new CRectangle();
+			break;
+		case SHAPE_TYPE::ST_GUN:
+			pShape = new CShapeGun();
+			break;
+		case SHAPE_TYPE::ST_RGUN:
+			pShape = new CShapeRGun();
+			break;
+		case SHAPE_TYPE::ST_LINE:
+			pShape = new CShapeLine();
+			break;
+		case SHAPE_TYPE::ST_S:
+			pShape = new CShapeS();
+			break;
+		case SHAPE_TYPE::ST_T:
+			pShape = new CShapeT();
+			break;
+		case SHAPE_TYPE::ST_Z:
+			pShape = new CShapeZ();
+			break;
+		}
 	
 	if (!pShape->Init())
 	{

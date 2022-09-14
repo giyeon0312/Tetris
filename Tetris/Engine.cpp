@@ -38,8 +38,8 @@ void CEngine::Run()
 		system("cls");
 		CShapeManager::GetInstance()->Update();
 
-		CStageManager::GetInstance()->Run();
-		CShapeManager::GetInstance()->Render();
+		CStageManager::GetInstance()->Run();	// 스테이지 렌더
+		CShapeManager::GetInstance()->Render();	// 도형 렌더
 
 		Sleep(5);		// 초당 한번만 돌아가도록 제어한다.
 	}
