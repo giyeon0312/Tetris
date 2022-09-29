@@ -88,3 +88,12 @@ enum SHAPE_TYPE
     ST_Z,
     ST_END,
 };
+
+enum ROTATION_DIR
+{
+    RD_UP,
+    RD_RIGHT,
+    RD_DOWN,
+    RD_LEFT,
+    RD_END,
+};

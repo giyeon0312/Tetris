@@ -15,6 +15,7 @@ CShape::CShape()
 	}
 
 	m_nWidth = 0;
+	m_iDir = RD_UP;
 }
 
 CShape::~CShape()
@@ -28,6 +29,10 @@ bool CShape::Init()
 	m_tPivot.y = 3;
 
 	return true;
+}
+
+void CShape::Rotation()
+{
 }
 
 void CShape::Render()
@@ -116,8 +121,8 @@ void CShape::MoveRight()
 	{
 		for (int j = 0; j < 4; ++j)
 		{
-			//if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j - 1, m_tPos.y - (3 - i)))
-			if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j, m_tPos.y - (3 - i)))
+			if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j - 1, m_tPos.y - (3 - i)))
+			//if (m_cShape[i][j] == '0' && pStage->CheckBlock(m_tPos.x + j, m_tPos.y - (3 - i)))
 				return;
 		}
 	}

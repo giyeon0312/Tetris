@@ -5,6 +5,7 @@ class CShapeT :
     public CShape
 {
 public:
-    bool Init();
+    virtual bool Init();
+    virtual void Rotation();
 };
 

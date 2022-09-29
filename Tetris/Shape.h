@@ -9,9 +9,10 @@ public:
 
 protected:
 	char		m_cShape[MAX_SHAPE_SIZE][MAX_SHAPE_SIZE];
-	POSITION	m_tPos;
+	POSITION	m_tPos;				// 현재 위치
 	POSITION	m_tPivot;			// 회전 축
 	int			m_nWidth;			// 피봇으로부터 가로 길이
+	int			 m_iDir;			// 회전 방향
 
 public:
 	void SetPosition(int x, int y)
@@ -43,6 +44,9 @@ public:
 
 public:
 	virtual bool Init();
+	virtual void Rotation();
+
+public:
 	void Render();
 	void RenderNext();
 	bool MoveDown();

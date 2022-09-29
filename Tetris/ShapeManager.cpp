@@ -18,6 +18,7 @@ CShapeManager::CShapeManager():
 	m_pCurShape(NULL), m_pNextShape(NULL)
 {
 	m_pCurShape = CreateRandomShape();
+	m_pCurShape->SetPosition(4, 0);
 	m_pNextShape = CreateRandomShape();
 	m_nSpeed = 0;
 }
@@ -30,7 +31,6 @@ CShapeManager::~CShapeManager()
 
 void CShapeManager::Update()
 {
-
 	CStage* pCurStage = CStageManager::GetInstance()->GetCurrentStage();
 	++m_nSpeed;
 
@@ -61,6 +61,11 @@ void CShapeManager::Update()
 	if (GetAsyncKeyState('D') & 0x8000) 
 	{
 		m_pCurShape->MoveRight();
+	}
+
+	if (GetAsyncKeyState('W') & 0x8000)
+	{
+		m_pCurShape->Rotation();
 	}
 }
 
@@ -114,6 +119,9 @@ CShape* CShapeManager::CreateRandomShape()
 {
 	CShape* pShape = NULL;
 	int randomShape = rand() % ST_END;
+
+	//
+	randomShape = ST_T;
 
 	switch ((SHAPE_TYPE)randomShape)
 	{
