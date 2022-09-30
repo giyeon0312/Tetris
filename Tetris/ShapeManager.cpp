@@ -120,9 +120,6 @@ CShape* CShapeManager::CreateRandomShape()
 	CShape* pShape = NULL;
 	int randomShape = rand() % ST_END;
 
-	//
-	randomShape = ST_T;
-
 	switch ((SHAPE_TYPE)randomShape)
 	{
 		case SHAPE_TYPE::ST_RECT:

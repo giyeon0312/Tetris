@@ -4,7 +4,8 @@
 
 CEngine* CEngine::_instance = nullptr;
 
-CEngine::CEngine()
+CEngine::CEngine():
+	m_bLoop(true)
 {
 	srand(time(0));
 }
@@ -33,7 +34,7 @@ bool CEngine::Init()
 
 void CEngine::Run()
 {
-	while (true)
+	while (m_bLoop)
 	{
 		system("cls");
 		CShapeManager::GetInstance()->Update();

@@ -100,6 +100,19 @@ bool CShape::MoveDown()
 			if ((m_cShape[i][j] == '0')
 				&& pStage->CheckBlock(m_tPos.x + j, m_tPos.y - (3 - i) + 1))
 			{
+				// 바닥에 닿은 후 현재 도형의 블럭인 부분이 하나라도 좌표가 0보다 작다면 종료한다.
+				for(int  k =0;k< MAX_SHAPE_SIZE; ++k)
+				{
+					for (int l = 0; l < MAX_SHAPE_SIZE; ++l)
+					{
+						if (m_cShape[k][l] == '0')
+						{
+							if (m_tPos.y - (3 - k) < 0)
+								CEngine::GetInstance()->End();
+							break;
+						}
+					}
+				}
 				return true;
 			}
 		}
